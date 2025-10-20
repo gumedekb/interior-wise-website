@@ -2,8 +2,17 @@ import React from 'react'
 // import ReactLogo from '../assets/react.svg'; // image testing
 import Location from '../assets/location.png';
 import HomeMoreInfo from './HomeMoreInfo';
+import { useNavigate } from 'react-router-dom';
 
 function Contact() {
+  const navigate = useNavigate(); // <-- Initialize
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Your details were submitted successfully!");
+    navigate('/'); // Redirect to home
+  };
+
   return (
     <div>
       <div className="flex max-w-6xl mx-auto p-6 gap-8">
@@ -17,7 +26,7 @@ function Contact() {
         </div>
 
         {/* Right: Form */}
-        <form className="w-1/2 flex flex-col space-y-4 text-lg">
+        <form onSubmit={handleSubmit} className="w-1/2 flex flex-col space-y-4 text-lg">
           <h2 className="text-2xl font-semibold">Get In Touch</h2>
           <p>Please fill in the form below if you have any questions and we will get back to you as soon as possible.</p>
 
@@ -66,10 +75,7 @@ function Contact() {
             <input type="file" id="file-upload" className="block" />
           </div>
 
-          <button
-            type="submit"
-            className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded transition"
-          >
+          <button type="submit" className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded transition">
             Submit
           </button>
         </form>
